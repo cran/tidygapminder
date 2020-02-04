@@ -20,7 +20,7 @@ This package aims to make really easy to tidy data retrieved from [Gapminder](ht
 library(tidygapminder)
 ```
 
-When you have loaded the package you are now in possesion of two super powers (functions): tidy_indice and tidy_bunch.
+When you have loaded the package you are now in possession of two super powers (functions): tidy_indice and tidy_bunch.
 
 ## tidy_indice
 
@@ -28,17 +28,19 @@ When you have loaded the package you are now in possesion of two super powers (f
 
 `tidy_indice` take as argument the path to the file and return the data as a tidy data frame.
 
-```{r}
+```{r, cache=TRUE}
 filepath <- system.file("extdata", "life_expectancy_years.csv", package = "tidygapminder")
 
 # From .............................
 df <- data.table::fread(filepath)
 
-df
+head(df)
 
 # To................................
 
-tidy_indice(filepath)
+ti_df <- tidy_indice(filepath)
+
+head(ti_df)
 ```
 
 
@@ -46,14 +48,16 @@ tidy_indice(filepath)
 
 `tidy_bunch` makes use of `tidy_indice` to tidy a whole set of data sheets and have the options to merge all data frames into one big data frame with `merge` set to `TRUE`:
 
-```{r}
-dir_path <- system.file("extdata", "gapminder", package = "tidygapminder")
+```{r, cache=TRUE}
+dir_path <- system.file("extdata", package = "tidygapminder")
 
 # From ................................
 list.files(dir_path)
 
 # To ..................................
-tidy_bunch(dir_path, merge = TRUE)
+td_dp <- tidy_bunch(dir_path, merge = TRUE)
+
+head(td_dp)
 ```
 
 Enjoy!!!

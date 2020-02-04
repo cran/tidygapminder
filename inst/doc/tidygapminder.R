@@ -7,24 +7,28 @@ knitr::opts_chunk$set(
 ## -----------------------------------------------------------------------------
 library(tidygapminder)
 
-## -----------------------------------------------------------------------------
+## ---- cache=TRUE--------------------------------------------------------------
 filepath <- system.file("extdata", "life_expectancy_years.csv", package = "tidygapminder")
 
 # From .............................
 df <- data.table::fread(filepath)
 
-df
+head(df)
 
 # To................................
 
-tidy_indice(filepath)
+ti_df <- tidy_indice(filepath)
 
-## -----------------------------------------------------------------------------
-dir_path <- system.file("extdata", "gapminder", package = "tidygapminder")
+head(ti_df)
+
+## ---- cache=TRUE--------------------------------------------------------------
+dir_path <- system.file("extdata", package = "tidygapminder")
 
 # From ................................
 list.files(dir_path)
 
 # To ..................................
-tidy_bunch(dir_path, merge = TRUE)
+td_dp <- tidy_bunch(dir_path, merge = TRUE)
+
+head(td_dp)
 
