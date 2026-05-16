@@ -1,34 +1,59 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment  = "#>"
 )
 
-## -----------------------------------------------------------------------------
+## ----setup--------------------------------------------------------------------
 library(tidygapminder)
 
-## ---- cache=TRUE--------------------------------------------------------------
-filepath <- system.file("extdata", "life_expectancy_years.csv", package = "tidygapminder")
+## -----------------------------------------------------------------------------
+csv_path <- system.file("extdata/life_expectancy_years.csv",
+                         package = "tidygapminder")
 
-# From .............................
-df <- data.table::fread(filepath)
+raw <- read.csv(csv_path, check.names = FALSE)
 
-head(df)
+# Indicator name is in the first column header
+colnames(raw)[1:6]
 
-# To................................
+# Countries are rows, years are columns
+head(raw[, 1:6])
 
-ti_df <- tidy_indice(filepath)
+## -----------------------------------------------------------------------------
+tidy_df <- tidy_index(csv_path)
 
-head(ti_df)
+head(tidy_df)
 
-## ---- cache=TRUE--------------------------------------------------------------
+## -----------------------------------------------------------------------------
+xlsx_path <- system.file("extdata/agriculture_land.xlsx",
+                          package = "tidygapminder")
+
+tidy_index(xlsx_path)
+
+## -----------------------------------------------------------------------------
 dir_path <- system.file("extdata", package = "tidygapminder")
 
-# From ................................
-list.files(dir_path)
+result <- tidy_bunch(dir_path)
 
-# To ..................................
-td_dp <- tidy_bunch(dir_path, merge = TRUE)
+# One tibble per file, named after the indicator
+names(result)
 
-head(td_dp)
+head(result$life_expectancy_years)
+
+## -----------------------------------------------------------------------------
+combined <- tidy_bunch(dir_path, combine = TRUE)
+
+head(combined)
+
+## ----error = TRUE-------------------------------------------------------------
+try({
+# File does not exist
+tidy_index("path/to/missing_file.csv")
+
+# Unsupported format
+tidy_index(tempfile(fileext = ".ods"))
+
+# Directory does not exist
+tidy_bunch("path/to/missing_dir")
+})
 

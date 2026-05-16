@@ -8,80 +8,110 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
 
-<title>A simple look into tidygapminder</title>
+<title>Getting started with tidygapminder</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -90,13 +120,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -104,6 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -117,9 +155,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +323,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -301,207 +337,154 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
-<h1 class="title toc-ignore">A simple look into tidygapminder</h1>
+<h1 class="title toc-ignore">Getting started with tidygapminder</h1>
 
 
 
-<p>This package aims to make really easy to tidy data retrieved from <a href="https://www.gapminder.org">Gapminder</a>. A the beginning is:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidygapminder)</span></code></pre></div>
-<p>When you have loaded the package you are now in possession of two super powers (functions): tidy_indice and tidy_bunch.</p>
-<div id="tidy_indice" class="section level2">
-<h2>tidy_indice</h2>
-<p><code>tidy_indice</code> function tidy as explain above tidy a data sheet downloaded on Gapminder. This data sheet can be either in csv or xlsx as indicated on the gapminder site.</p>
-<p><code>tidy_indice</code> take as argument the path to the file and return the data as a tidy data frame.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>filepath &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;life_expectancy_years.csv&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;tidygapminder&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># From .............................</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>df &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">fread</span>(filepath)</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">head</span>(df)</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;             V1     V2     V3     V4     V5     V6     V7     V8     V9    V10</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt; 1:     country 1800.0 1801.0 1802.0 1803.0 1804.0 1805.0 1806.0 1807.0 1808.0</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt; 2: Afghanistan   28.2   28.2   28.2   28.2   28.2   28.2   28.1   28.1   28.1</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt; 3:     Albania   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt; 4:     Algeria   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt; 5:     Andorra     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt; 6:      Angola   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;       V11    V12    V13    V14    V15    V16    V17    V18    V19    V20    V21</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; 1: 1809.0 1810.0 1811.0 1812.0 1813.0 1814.0 1815.0 1816.0 1817.0 1818.0 1819.0</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; 2:   28.1   28.1   28.1   28.1   28.1   28.1   28.1   28.1   28.0   28.0   28.0</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt;       V22    V23    V24    V25    V26    V27    V28    V29    V30    V31    V32</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; 1: 1820.0 1821.0 1822.0 1823.0 1824.0 1825.0 1826.0 1827.0 1828.0 1829.0 1830.0</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#&gt; 2:   28.0   28.0   28.0   28.0   28.0   27.9   27.9   27.9   27.9   27.9   27.9</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="co">#&gt;       V33    V34    V35    V36    V37    V38    V39    V40    V41    V42    V43</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co">#&gt; 1: 1831.0 1832.0 1833.0 1834.0 1835.0 1836.0 1837.0 1838.0 1839.0 1840.0 1841.0</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="co">#&gt; 2:   27.9   27.9   27.9   27.9   27.9   27.8   27.8   27.8   27.8   27.8   27.8</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="co">#&gt;       V44    V45    V46    V47    V48    V49    V50    V51    V52    V53    V54</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="co">#&gt; 1: 1842.0 1843.0 1844.0 1845.0 1846.0 1847.0 1848.0 1849.0 1850.0 1851.0 1852.0</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="co">#&gt; 2:   27.8   27.8   27.8   27.8   27.7   27.7   27.7   27.7   27.7   27.7   27.7</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   28.8   28.8   28.8   28.8   20.0   15.0   22.0   28.8</span></span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="co">#&gt;       V55    V56    V57    V58    V59    V60    V61    V62    V63    V64    V65</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="co">#&gt; 1: 1853.0 1854.0 1855.0 1856.0 1857.0 1858.0 1859.0 1860.0 1861.0 1862.0 1863.0</span></span>
-<span id="cb2-44"><a href="#cb2-44"></a><span class="co">#&gt; 2:   27.7   27.7   27.6   27.6   27.6   27.6   27.6   27.6   27.6   27.6   27.6</span></span>
-<span id="cb2-45"><a href="#cb2-45"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8   28.8</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.0</span></span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="co">#&gt;       V66    V67    V68    V69    V70    V71    V72    V73    V74    V75    V76</span></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="co">#&gt; 1: 1864.0 1865.0 1866.0 1867.0 1868.0 1869.0 1870.0 1871.0 1872.0 1873.0 1874.0</span></span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="co">#&gt; 2:   27.6   27.5   27.5   27.5   27.5   27.5   27.5   27.6   27.6   27.7   27.7</span></span>
-<span id="cb2-52"><a href="#cb2-52"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="co">#&gt; 4:   28.8   28.8   28.8   21.0   11.0   15.0   22.0   28.9   28.9   28.9   29.0</span></span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-55"><a href="#cb2-55"></a><span class="co">#&gt; 6:   27.0   27.0   27.0   27.0   27.0   27.0   27.0   27.1   27.1   27.2   27.3</span></span>
-<span id="cb2-56"><a href="#cb2-56"></a><span class="co">#&gt;       V77    V78    V79    V80    V81    V82    V83    V84    V85    V86    V87</span></span>
-<span id="cb2-57"><a href="#cb2-57"></a><span class="co">#&gt; 1: 1875.0 1876.0 1877.0 1878.0 1879.0 1880.0 1881.0 1882.0 1883.0 1884.0 1885.0</span></span>
-<span id="cb2-58"><a href="#cb2-58"></a><span class="co">#&gt; 2:   27.8   27.8   27.9   28.0   28.0   28.1   28.1   28.2   28.2   28.3   28.4</span></span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="co">#&gt; 4:   29.0   29.1   29.1   29.1   29.2   29.2   29.3   29.3   29.4   29.4   29.4</span></span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-62"><a href="#cb2-62"></a><span class="co">#&gt; 6:   27.4   27.5   27.6   27.7   27.8   27.8   27.9   28.0   28.1   28.2   28.3</span></span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="co">#&gt;       V88    V89    V90    V91    V92    V93    V94    V95    V96    V97    V98</span></span>
-<span id="cb2-64"><a href="#cb2-64"></a><span class="co">#&gt; 1: 1886.0 1887.0 1888.0 1889.0 1890.0 1891.0 1892.0 1893.0 1894.0 1895.0 1896.0</span></span>
-<span id="cb2-65"><a href="#cb2-65"></a><span class="co">#&gt; 2:   28.4   28.5   28.5   28.6   28.6   28.7   28.8   28.8   28.9   28.9   29.0</span></span>
-<span id="cb2-66"><a href="#cb2-66"></a><span class="co">#&gt; 3:   35.4   35.4   35.4   35.4   35.5   35.5   35.5   35.5   35.5   35.5   35.5</span></span>
-<span id="cb2-67"><a href="#cb2-67"></a><span class="co">#&gt; 4:   29.5   29.5   29.6   29.6   29.6   29.7   29.7   29.8   29.8   29.8   29.9</span></span>
-<span id="cb2-68"><a href="#cb2-68"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-69"><a href="#cb2-69"></a><span class="co">#&gt; 6:   28.3   28.4   28.5   28.6   28.7   28.8   28.9   28.9   29.0   29.1   29.2</span></span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="co">#&gt;       V99   V100   V101   V102   V103   V104   V105   V106   V107   V108   V109</span></span>
-<span id="cb2-71"><a href="#cb2-71"></a><span class="co">#&gt; 1: 1897.0 1898.0 1899.0 1900.0 1901.0 1902.0 1903.0 1904.0 1905.0 1906.0 1907.0</span></span>
-<span id="cb2-72"><a href="#cb2-72"></a><span class="co">#&gt; 2:   29.1   29.1   29.2   29.2   29.3   29.3   29.4   29.4   29.5   29.6   29.6</span></span>
-<span id="cb2-73"><a href="#cb2-73"></a><span class="co">#&gt; 3:   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5</span></span>
-<span id="cb2-74"><a href="#cb2-74"></a><span class="co">#&gt; 4:   29.9   30.0   30.0   30.1   30.2   30.3   31.3   25.3   28.0   29.5   29.4</span></span>
-<span id="cb2-75"><a href="#cb2-75"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-76"><a href="#cb2-76"></a><span class="co">#&gt; 6:   29.3   29.4   29.4   29.5   29.6   29.7   29.8   29.9   30.0   30.1   30.1</span></span>
-<span id="cb2-77"><a href="#cb2-77"></a><span class="co">#&gt;      V110   V111   V112   V113   V114   V115   V116   V117   V118   V119</span></span>
-<span id="cb2-78"><a href="#cb2-78"></a><span class="co">#&gt; 1: 1908.0 1909.0 1910.0 1911.0 1912.0 1913.0 1914.0 1915.0 1916.0 1917.0</span></span>
-<span id="cb2-79"><a href="#cb2-79"></a><span class="co">#&gt; 2:   29.7   29.7   29.8   29.8   29.9   29.9   30.0   30.1   30.1   30.2</span></span>
-<span id="cb2-80"><a href="#cb2-80"></a><span class="co">#&gt; 3:   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5</span></span>
-<span id="cb2-81"><a href="#cb2-81"></a><span class="co">#&gt; 4:   29.3   30.9   32.5   32.3   33.7   31.5   31.0   30.5   30.1   30.2</span></span>
-<span id="cb2-82"><a href="#cb2-82"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-83"><a href="#cb2-83"></a><span class="co">#&gt; 6:   30.2   30.3   30.4   30.5   30.6   30.6   30.7   30.8   30.9   31.0</span></span>
-<span id="cb2-84"><a href="#cb2-84"></a><span class="co">#&gt;       V120   V121   V122   V123   V124   V125   V126   V127   V128   V129</span></span>
-<span id="cb2-85"><a href="#cb2-85"></a><span class="co">#&gt; 1: 1918.00 1919.0 1920.0 1921.0 1922.0 1923.0 1924.0 1925.0 1926.0 1927.0</span></span>
-<span id="cb2-86"><a href="#cb2-86"></a><span class="co">#&gt; 2:    7.89   30.3   30.3   30.4   30.4   30.5   30.6   30.6   30.7   30.7</span></span>
-<span id="cb2-87"><a href="#cb2-87"></a><span class="co">#&gt; 3:   19.50   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5   35.5</span></span>
-<span id="cb2-88"><a href="#cb2-88"></a><span class="co">#&gt; 4:   23.60   30.3   29.4   29.5   29.2   31.8   33.3   34.1   33.4   28.6</span></span>
-<span id="cb2-89"><a href="#cb2-89"></a><span class="co">#&gt; 5:      NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-90"><a href="#cb2-90"></a><span class="co">#&gt; 6:   12.00   31.2   31.2   31.3   31.4   31.5   31.6   31.7   31.8   31.8</span></span>
-<span id="cb2-91"><a href="#cb2-91"></a><span class="co">#&gt;      V130   V131   V132   V133   V134   V135   V136   V137   V138   V139   V140</span></span>
-<span id="cb2-92"><a href="#cb2-92"></a><span class="co">#&gt; 1: 1928.0 1929.0 1930.0 1931.0 1932.0 1933.0 1934.0 1935.0 1936.0 1937.0 1938.0</span></span>
-<span id="cb2-93"><a href="#cb2-93"></a><span class="co">#&gt; 2:   30.8   30.8   30.9   30.9   31.0   31.1   31.1   31.2   31.2   31.3   31.3</span></span>
-<span id="cb2-94"><a href="#cb2-94"></a><span class="co">#&gt; 3:   35.5   35.5   36.4   37.3   38.2   39.1   40.0   40.9   41.8   42.8   43.6</span></span>
-<span id="cb2-95"><a href="#cb2-95"></a><span class="co">#&gt; 4:   32.2   32.5   33.8   31.7   33.1   34.3   33.7   35.6   36.8   34.9   34.3</span></span>
-<span id="cb2-96"><a href="#cb2-96"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-97"><a href="#cb2-97"></a><span class="co">#&gt; 6:   31.9   32.0   32.1   32.2   32.3   32.4   32.4   32.5   32.6   32.7   32.8</span></span>
-<span id="cb2-98"><a href="#cb2-98"></a><span class="co">#&gt;      V141   V142   V143   V144   V145   V146   V147   V148   V149   V150   V151</span></span>
-<span id="cb2-99"><a href="#cb2-99"></a><span class="co">#&gt; 1: 1939.0 1940.0 1941.0 1942.0 1943.0 1944.0 1945.0 1946.0 1947.0 1948.0 1949.0</span></span>
-<span id="cb2-100"><a href="#cb2-100"></a><span class="co">#&gt; 2:   31.4   31.4   31.5   31.6   31.6   31.7   31.7   31.8   31.8   31.9   31.9</span></span>
-<span id="cb2-101"><a href="#cb2-101"></a><span class="co">#&gt; 3:   43.2   42.2   41.7   40.2   37.2   34.2   47.2   50.3   51.8   52.7   53.6</span></span>
-<span id="cb2-102"><a href="#cb2-102"></a><span class="co">#&gt; 4:   36.6   37.1   35.3   34.7   30.0   35.5   33.2   35.4   38.8   42.0   44.4</span></span>
-<span id="cb2-103"><a href="#cb2-103"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-104"><a href="#cb2-104"></a><span class="co">#&gt; 6:   32.9   33.0   33.3   33.7   34.0   34.4   34.8   35.1   35.5   35.9   36.2</span></span>
-<span id="cb2-105"><a href="#cb2-105"></a><span class="co">#&gt;      V152   V153   V154   V155   V156   V157   V158   V159   V160   V161   V162</span></span>
-<span id="cb2-106"><a href="#cb2-106"></a><span class="co">#&gt; 1: 1950.0 1951.0 1952.0 1953.0 1954.0 1955.0 1956.0 1957.0 1958.0 1959.0 1960.0</span></span>
-<span id="cb2-107"><a href="#cb2-107"></a><span class="co">#&gt; 2:   32.0   32.4   33.0   33.7   34.4   35.1   35.8   36.5   37.2   37.9   38.6</span></span>
-<span id="cb2-108"><a href="#cb2-108"></a><span class="co">#&gt; 3:   54.5   54.7   55.2   55.8   56.5   57.3   58.3   59.3   60.4   61.6   62.7</span></span>
-<span id="cb2-109"><a href="#cb2-109"></a><span class="co">#&gt; 4:   46.9   47.1   47.6   48.1   48.6   49.2   49.7   50.3   50.9   51.4   52.0</span></span>
-<span id="cb2-110"><a href="#cb2-110"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb2-111"><a href="#cb2-111"></a><span class="co">#&gt; 6:   36.6   36.9   37.5   38.1   38.7   39.3   39.9   40.5   41.2   41.8   42.4</span></span>
-<span id="cb2-112"><a href="#cb2-112"></a><span class="co">#&gt;      V163   V164   V165   V166   V167   V168   V169   V170   V171   V172   V173</span></span>
-<span id="cb2-113"><a href="#cb2-113"></a><span class="co">#&gt; 1: 1961.0 1962.0 1963.0 1964.0 1965.0 1966.0 1967.0 1968.0 1969.0 1970.0 1971.0</span></span>
-<span id="cb2-114"><a href="#cb2-114"></a><span class="co">#&gt; 2:   39.4   40.1   40.8   41.5   42.2   42.9   43.7   44.4   45.1   45.8   45.9</span></span>
-<span id="cb2-115"><a href="#cb2-115"></a><span class="co">#&gt; 3:   63.7   64.6   65.3   65.9   66.3   66.5   66.7   66.9   67.1   67.4   68.0</span></span>
-<span id="cb2-116"><a href="#cb2-116"></a><span class="co">#&gt; 4:   52.6   53.2   53.8   54.3   54.9   55.4   56.0   56.5   57.0   57.5   57.8</span></span>
-<span id="cb2-117"><a href="#cb2-117"></a><span class="co">#&gt; 5:     NA     NA     NA     NA     NA     NA     NA     NA     NA   76.0   76.3</span></span>
-<span id="cb2-118"><a href="#cb2-118"></a><span class="co">#&gt; 6:   43.0   43.6   44.3   44.9   45.5   46.2   46.8   47.4   48.1   48.7   49.0</span></span>
-<span id="cb2-119"><a href="#cb2-119"></a><span class="co">#&gt;      V174   V175   V176   V177   V178   V179   V180   V181   V182   V183   V184</span></span>
-<span id="cb2-120"><a href="#cb2-120"></a><span class="co">#&gt; 1: 1972.0 1973.0 1974.0 1975.0 1976.0 1977.0 1978.0 1979.0 1980.0 1981.0 1982.0</span></span>
-<span id="cb2-121"><a href="#cb2-121"></a><span class="co">#&gt; 2:   45.9   46.0   46.1   46.3   46.5   46.6   45.0   43.6   43.3   44.1   43.8</span></span>
-<span id="cb2-122"><a href="#cb2-122"></a><span class="co">#&gt; 3:   68.6   69.2   69.8   70.3   70.8   71.3   71.7   72.0   72.3   72.4   72.5</span></span>
-<span id="cb2-123"><a href="#cb2-123"></a><span class="co">#&gt; 4:   58.2   58.5   59.1   59.5   60.0   60.6   61.2   61.9   62.1   63.4   64.4</span></span>
-<span id="cb2-124"><a href="#cb2-124"></a><span class="co">#&gt; 5:   76.6   76.9   77.2   77.4   77.7   78.0   78.3   78.6   78.7   78.8   78.8</span></span>
-<span id="cb2-125"><a href="#cb2-125"></a><span class="co">#&gt; 6:   49.2   49.4   49.6   49.5   49.5   49.6   49.7   49.8   49.9   50.0   50.0</span></span>
-<span id="cb2-126"><a href="#cb2-126"></a><span class="co">#&gt;      V185   V186   V187   V188   V189   V190   V191   V192   V193   V194   V195</span></span>
-<span id="cb2-127"><a href="#cb2-127"></a><span class="co">#&gt; 1: 1983.0 1984.0 1985.0 1986.0 1987.0 1988.0 1989.0 1990.0 1991.0 1992.0 1993.0</span></span>
-<span id="cb2-128"><a href="#cb2-128"></a><span class="co">#&gt; 2:   42.0   39.8   41.6   42.6   44.7   47.0   50.8   51.6   51.3   51.4   51.4</span></span>
-<span id="cb2-129"><a href="#cb2-129"></a><span class="co">#&gt; 3:   72.6   72.8   73.0   73.2   73.2   73.4   73.7   73.9   73.9   73.9   73.9</span></span>
-<span id="cb2-130"><a href="#cb2-130"></a><span class="co">#&gt; 4:   65.7   66.9   68.0   68.7   69.4   70.0   70.5   71.0   71.4   71.7   72.0</span></span>
-<span id="cb2-131"><a href="#cb2-131"></a><span class="co">#&gt; 5:   78.8   79.0   79.1   79.2   79.3   79.3   79.4   79.5   79.5   79.6   79.8</span></span>
-<span id="cb2-132"><a href="#cb2-132"></a><span class="co">#&gt; 6:   50.1   50.2   50.3   50.2   50.0   49.8   50.2   50.2   50.8   51.0   49.7</span></span>
-<span id="cb2-133"><a href="#cb2-133"></a><span class="co">#&gt;      V196   V197   V198   V199   V200   V201   V202   V203   V204   V205   V206</span></span>
-<span id="cb2-134"><a href="#cb2-134"></a><span class="co">#&gt; 1: 1994.0 1995.0 1996.0 1997.0 1998.0 1999.0 2000.0 2001.0 2002.0 2003.0 2004.0</span></span>
-<span id="cb2-135"><a href="#cb2-135"></a><span class="co">#&gt; 2:   50.7   51.1   51.4   51.1   50.1   51.5   51.6   51.7   52.4   53.0   53.5</span></span>
-<span id="cb2-136"><a href="#cb2-136"></a><span class="co">#&gt; 3:   74.0   74.1   74.3   72.5   74.3   74.4   74.4   74.5   74.5   74.6   74.7</span></span>
-<span id="cb2-137"><a href="#cb2-137"></a><span class="co">#&gt; 4:   72.1   72.3   72.8   73.0   73.1   73.5   73.9   74.1   74.4   74.5   75.1</span></span>
-<span id="cb2-138"><a href="#cb2-138"></a><span class="co">#&gt; 5:   80.0   80.3   80.6   81.0   81.3   81.5   81.8   82.0   82.3   82.4   82.3</span></span>
-<span id="cb2-139"><a href="#cb2-139"></a><span class="co">#&gt; 6:   51.1   52.0   52.3   52.7   52.8   52.9   53.4   53.6   54.5   55.1   55.7</span></span>
-<span id="cb2-140"><a href="#cb2-140"></a><span class="co">#&gt;      V207   V208   V209   V210   V211   V212   V213   V214   V215   V216   V217</span></span>
-<span id="cb2-141"><a href="#cb2-141"></a><span class="co">#&gt; 1: 2005.0 2006.0 2007.0 2008.0 2009.0 2010.0 2011.0 2012.0 2013.0 2014.0 2015.0</span></span>
-<span id="cb2-142"><a href="#cb2-142"></a><span class="co">#&gt; 2:   53.9   54.1   54.6   55.2   55.7   56.2   56.7   57.2   57.7   57.8   57.9</span></span>
-<span id="cb2-143"><a href="#cb2-143"></a><span class="co">#&gt; 3:   74.9   75.2   75.4   75.6   75.9   76.3   76.7   77.0   77.2   77.4   77.6</span></span>
-<span id="cb2-144"><a href="#cb2-144"></a><span class="co">#&gt; 4:   75.4   75.6   75.9   76.1   76.3   76.5   76.7   76.8   77.0   77.1   77.3</span></span>
-<span id="cb2-145"><a href="#cb2-145"></a><span class="co">#&gt; 5:   82.5   82.5   82.7   82.7   82.7   82.7   82.6   82.6   82.6   82.6   82.5</span></span>
-<span id="cb2-146"><a href="#cb2-146"></a><span class="co">#&gt; 6:   56.5   57.0   57.8   58.6   59.3   60.1   60.9   61.7   62.5   63.3   64.0</span></span>
-<span id="cb2-147"><a href="#cb2-147"></a><span class="co">#&gt;      V218   V219   V220</span></span>
-<span id="cb2-148"><a href="#cb2-148"></a><span class="co">#&gt; 1: 2016.0 2017.0 2018.0</span></span>
-<span id="cb2-149"><a href="#cb2-149"></a><span class="co">#&gt; 2:   58.0   58.4   58.7</span></span>
-<span id="cb2-150"><a href="#cb2-150"></a><span class="co">#&gt; 3:   77.7   77.9   78.0</span></span>
-<span id="cb2-151"><a href="#cb2-151"></a><span class="co">#&gt; 4:   77.4   77.6   77.9</span></span>
-<span id="cb2-152"><a href="#cb2-152"></a><span class="co">#&gt; 5:   82.5     NA     NA</span></span>
-<span id="cb2-153"><a href="#cb2-153"></a><span class="co">#&gt; 6:   64.7   64.9   65.2</span></span>
-<span id="cb2-154"><a href="#cb2-154"></a></span>
-<span id="cb2-155"><a href="#cb2-155"></a><span class="co"># To................................</span></span>
-<span id="cb2-156"><a href="#cb2-156"></a></span>
-<span id="cb2-157"><a href="#cb2-157"></a>ti_df &lt;-<span class="st"> </span><span class="kw">tidy_indice</span>(filepath)</span>
-<span id="cb2-158"><a href="#cb2-158"></a></span>
-<span id="cb2-159"><a href="#cb2-159"></a><span class="kw">head</span>(ti_df)</span>
-<span id="cb2-160"><a href="#cb2-160"></a><span class="co">#&gt; # A tibble: 6 x 3</span></span>
-<span id="cb2-161"><a href="#cb2-161"></a><span class="co">#&gt;   country      year life_expectancy_years</span></span>
-<span id="cb2-162"><a href="#cb2-162"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
-<span id="cb2-163"><a href="#cb2-163"></a><span class="co">#&gt; 1 Afghanistan  1800                  28.2</span></span>
-<span id="cb2-164"><a href="#cb2-164"></a><span class="co">#&gt; 2 Afghanistan  1801                  28.2</span></span>
-<span id="cb2-165"><a href="#cb2-165"></a><span class="co">#&gt; 3 Afghanistan  1802                  28.2</span></span>
-<span id="cb2-166"><a href="#cb2-166"></a><span class="co">#&gt; 4 Afghanistan  1803                  28.2</span></span>
-<span id="cb2-167"><a href="#cb2-167"></a><span class="co">#&gt; 5 Afghanistan  1804                  28.2</span></span>
-<span id="cb2-168"><a href="#cb2-168"></a><span class="co">#&gt; 6 Afghanistan  1805                  28.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidygapminder)</span></code></pre></div>
+<p><a href="https://www.gapminder.org">Gapminder</a> provides hundreds
+of indicators, life expectancy, income, CO₂ emissions, agricultural
+land, and more, as individual data sheets downloadable in
+<code>.csv</code> or <code>.xlsx</code> format. These sheets share a
+common structure that is convenient for distribution but awkward for
+analysis: the indicator name sits in cell A1, countries are rows, and
+years are spread across columns (wide format).</p>
+<p><code>tidygapminder</code> converts this wide format into a tidy long
+format where each row is one observation (one country, one year), making
+the data immediately ready for use with base R, ggplot2, or any other
+analysis tool.</p>
+<div id="what-a-raw-gapminder-sheet-looks-like" class="section level2">
+<h2>What a raw Gapminder sheet looks like</h2>
+<p>Here is what a typical Gapminder sheet looks like before tidying:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>csv_path <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/life_expectancy_years.csv&quot;</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>                         <span class="at">package =</span> <span class="st">&quot;tidygapminder&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(csv_path, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Indicator name is in the first column header</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">colnames</span>(raw)[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; [1] &quot;country&quot; &quot;1800&quot;    &quot;1801&quot;    &quot;1802&quot;    &quot;1803&quot;    &quot;1804&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># Countries are rows, years are columns</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="fu">head</span>(raw[, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;               country 1800 1801 1802 1803 1804</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 1         Afghanistan 28.2 28.2 28.2 28.2 28.2</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 2             Albania 35.4 35.4 35.4 35.4 35.4</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 3             Algeria 28.8 28.8 28.8 28.8 28.8</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 4             Andorra   NA   NA   NA   NA   NA</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 5              Angola 27.0 27.0 27.0 27.0 27.0</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 6 Antigua and Barbuda 33.5 33.5 33.5 33.5 33.5</span></span></code></pre></div>
+<p>The first column header holds the indicator name
+(<code>life expectancy years</code>), and every subsequent column is a
+year. This wide format makes it hard to filter by year, plot trends, or
+join with other indicators.</p>
 </div>
-<div id="tidy_bunch" class="section level2">
-<h2>tidy_bunch</h2>
-<p><code>tidy_bunch</code> makes use of <code>tidy_indice</code> to tidy a whole set of data sheets and have the options to merge all data frames into one big data frame with <code>merge</code> set to <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dir_path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;tidygapminder&quot;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># From ................................</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">list.files</span>(dir_path)</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [1] &quot;agriculture_land.xlsx&quot;     &quot;life_expectancy_years.csv&quot;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># To ..................................</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a>td_dp &lt;-<span class="st"> </span><span class="kw">tidy_bunch</span>(dir_path, <span class="dt">merge =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="kw">head</span>(td_dp)</span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt;       country year Agricultural land (% of land area) life_expectancy_years</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; 1 Afghanistan 1800                                 NA                  28.2</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; 2 Afghanistan 1801                                 NA                  28.2</span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; 3 Afghanistan 1802                                 NA                  28.2</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 4 Afghanistan 1803                                 NA                  28.2</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 5 Afghanistan 1804                                 NA                  28.2</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 6 Afghanistan 1805                                 NA                  28.2</span></span></code></pre></div>
-<p>Enjoy!!!</p>
+<div id="tidying-a-single-sheet-with-tidy_index" class="section level2">
+<h2>Tidying a single sheet with <code>tidy_index()</code></h2>
+<p><code>tidy_index()</code> takes the path to a single Gapminder sheet
+(<code>.csv</code>, <code>.xlsx</code>, or <code>.xls</code>) and
+returns a tidy tibble with three columns: <code>country</code>,
+<code>year</code>, and the indicator.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>tidy_df <span class="ot">&lt;-</span> <span class="fu">tidy_index</span>(csv_path)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">head</span>(tidy_df)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;   country              year life_expectancy_years</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 1 Afghanistan          1800                  28.2</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 2 Albania              1800                  35.4</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; 3 Algeria              1800                  28.8</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; 4 Andorra              1800                  NA  </span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; 5 Angola               1800                  27  </span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; 6 Antigua and Barbuda  1800                  33.5</span></span></code></pre></div>
+<p>Each row is now one observation. The indicator column is named after
+the file, which matches the Gapminder convention of naming files after
+their indicator.</p>
+<p><code>tidy_index()</code> also handles <code>.xlsx</code> files
+identically:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>xlsx_path <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/agriculture_land.xlsx&quot;</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                          <span class="at">package =</span> <span class="st">&quot;tidygapminder&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">tidy_index</span>(xlsx_path)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 11,076 × 3</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;    country              year `Agricultural land (% of land area)`</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;               &lt;dbl&gt;                                &lt;dbl&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  1 Afghanistan          1960                                   NA</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;  2 Albania              1960                                   NA</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  3 Algeria              1960                                   NA</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  4 American Samoa       1960                                   NA</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  5 Andorra              1960                                   NA</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  6 Angola               1960                                   NA</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt;  7 Antigua and Barbuda  1960                                   NA</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt;  8 Argentina            1960                                   NA</span></span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a><span class="co">#&gt;  9 Armenia              1960                                   NA</span></span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a><span class="co">#&gt; 10 Aruba                1960                                   NA</span></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a><span class="co">#&gt; # ℹ 11,066 more rows</span></span></code></pre></div>
+</div>
+<div id="tidying-a-folder-of-sheets-with-tidy_bunch" class="section level2">
+<h2>Tidying a folder of sheets with <code>tidy_bunch()</code></h2>
+<p>When working with multiple indicators at once,
+<code>tidy_bunch()</code> applies <code>tidy_index()</code> to every
+compatible file in a directory and returns a named list of tibbles — one
+per file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>dir_path <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="at">package =</span> <span class="st">&quot;tidygapminder&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">tidy_bunch</span>(dir_path)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># One tibble per file, named after the indicator</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">names</span>(result)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;agriculture_land&quot;      &quot;life_expectancy_years&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">head</span>(result<span class="sc">$</span>life_expectancy_years)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;   country              year life_expectancy_years</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt; 1 Afghanistan          1800                  28.2</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 2 Albania              1800                  35.4</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 3 Algeria              1800                  28.8</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 4 Andorra              1800                  NA  </span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 5 Angola               1800                  27  </span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 6 Antigua and Barbuda  1800                  33.5</span></span></code></pre></div>
+<div id="combining-all-indicators-into-one-data-frame" class="section level3">
+<h3>Combining all indicators into one data frame</h3>
+<p>Setting <code>combine = TRUE</code> merges all tibbles into a single
+data frame joined on <code>country</code> and <code>year</code>, using a
+full outer join so no observations are lost even when indicators cover
+different time ranges:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">tidy_bunch</span>(dir_path, <span class="at">combine =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">head</span>(combined)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 4</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt;   country      year `Agricultural land (% of land area)` life_expectancy_years</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;       &lt;dbl&gt;                                &lt;dbl&gt;                 &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 1 Afghanistan  1800                                   NA                  28.2</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 2 Afghanistan  1801                                   NA                  28.2</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 3 Afghanistan  1802                                   NA                  28.2</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 4 Afghanistan  1803                                   NA                  28.2</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 5 Afghanistan  1804                                   NA                  28.2</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 6 Afghanistan  1805                                   NA                  28.2</span></span></code></pre></div>
+<p>This combined format is convenient for multi-indicator analyses, for
+example plotting life expectancy against agricultural land use per
+country.</p>
+</div>
+</div>
+<div id="error-handling" class="section level2">
+<h2>Error handling</h2>
+<p>Both functions provide informative errors for common mistakes:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># File does not exist</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">tidy_index</span>(<span class="st">&quot;path/to/missing_file.csv&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; Error in `tidy_index()`:</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; ! Input file not found: path/to/missing_file.csv</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># Unsupported format</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">tidy_index</span>(<span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.ods&quot;</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; Error in `tidy_index()`:</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; ! Input file not found: /tmp/RtmpE59hoo/file1606f7372cacd.ods</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co"># Directory does not exist</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="fu">tidy_bunch</span>(<span class="st">&quot;path/to/missing_dir&quot;</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; Error in `tidy_bunch()`:</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; ! Directory not found: path/to/missing_dir</span></span></code></pre></div>
 </div>
 
 
